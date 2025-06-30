@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes App</title>
+<!-- Font Awesome CDN for Filter Icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar-wrapper">
+    <div class="navbar">
+        <input type="text" id="searchInput" placeholder="Search notes...">
+        <button onclick="debouncedSearch()">Search</button>
+        <button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="box add-note-box">
+        <h2>Add Note Section</h2>
+        <textarea id="noteInput" placeholder="Type your note here..." disabled></textarea>
+        <div class="counter" id="charCount">Characters: 0</div>
+        <select id="colorSelect">
+            <option value="gray">Select Color Tag</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+        </select>
+        <button id="showNoteAreaBtn" onclick="showNoteArea()">Add Note</button>
+        <button id="saveNoteBtn" onclick="addOrUpdateNote()" style="display:none;">Save Note</button>
+    </div>
+
+    <div class="box saved-notes-box">
+        <h2>Saved Notes</h2>
+        <div class="sort-section">
+            <div class="dropdown">
+                <button id="sortToggleBtn" onclick="toggleDropdown()">
+                    <i class="fas fa-filter"></i>
+                </button>
+                <div id="sortDropdown" class="dropdown-content">
+                    <a href="#" onclick="sortNotes('date')">Sort by Date</a>
+                    <a href="#" onclick="sortNotes('alpha')">Sort A-Z</a>
+                </div>
+            </div>
+            <button id="downloadBtn" onclick="downloadAllNotes()">Download All Notes</button>
+        </div>
+        <div id="showAllBtnWrapper" style="display:none;">
+            <button onclick="showAllNotes()">Show All Notes</button>
+        </div>
+        <div id="notesList"></div>
+        <button id="clearAllButton" onclick="clearAllNotes()">Clear All</button>
+        <button id="showHideBtn" onclick="toggleShowHideNotes()">Hide Notes</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
